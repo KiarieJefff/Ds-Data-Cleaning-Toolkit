@@ -124,7 +124,7 @@ cleaner.clean_date(date_string, formats=None, output_format='%Y-%m-%d',
 ```python
 # Clean lists
 cleaner.clean_list(data_list, remove_duplicates=True, remove_empty=True, 
-                  remove_none=True, sort=False, unique_only=True)
+                  remove_none=True, sort=False, unique_only=True, to_lowercase=False)
 
 # Clean dictionaries
 cleaner.clean_dict(data_dict, remove_empty_values=True, remove_none_values=True, 
@@ -182,6 +182,17 @@ cleaned_list = cleaner.clean_list(
     sort=True
 )
 # Result: ['BANANA', 'CHERRY', 'apple', 'date']
+
+# With lowercase conversion
+lowercase_list = cleaner.clean_list(
+    raw_list, 
+    remove_duplicates=True, 
+    remove_empty=True,
+    remove_none=True,
+    sort=True,
+    to_lowercase=True
+)
+# Result: ['apple', 'banana', 'cherry', 'date']
 ```
 
 ### Example 3: DataFrame Pipeline
