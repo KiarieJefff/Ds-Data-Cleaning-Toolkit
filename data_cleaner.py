@@ -285,7 +285,8 @@ class DataCleaner:
                   remove_empty: bool = True,
                   remove_none: bool = True,
                   sort: bool = False,
-                  unique_only: bool = True) -> List[Any]:
+                  unique_only: bool = True,
+                  to_lowercase: bool = False) -> List[Any]:
         """
         Clean list data
         
@@ -296,6 +297,7 @@ class DataCleaner:
             remove_none: Remove None values
             sort: Sort the list
             unique_only: Keep only unique values (if remove_duplicates=False)
+            to_lowercase: Convert string items to lowercase
         
         Returns:
             Cleaned list
@@ -313,6 +315,10 @@ class DataCleaner:
         
         # Strip whitespace from remaining items if they're strings
         cleaned = [x.strip() if isinstance(x, str) else x for x in cleaned]
+        
+        # Convert string items to lowercase if requested
+        if to_lowercase:
+            cleaned = [x.lower() if isinstance(x, str) else x for x in cleaned]
         
         if remove_duplicates or unique_only:
             # Preserve order while removing duplicates
